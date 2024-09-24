@@ -34,7 +34,21 @@ and open the template in the editor.
 
                     <li>Selecione o seu serviço <br />
                         <select name="selectServico" class="input">
-                            <option></option>
+                            <?php 
+                            include "conexao_bd.php"; 
+                            $sql = "SELECT * FROM servico ORDER BY descricao"; 
+                            $resultado = retornaDados($sql); 
+                            while ($linha = mysqli_fetch_assoc($resultado))
+                            {
+                            ?>
+                            
+                            <opition value="<?php echo $linha["id_servico"] ?>">
+                                   <?php echo $linha["descricao"]?>, R$
+                                   <?php echo $linha["valor"]?> 
+                            </option> 
+                                <?php 
+                            }  
+                            ?> 
                         </select>
                     </li>
 
